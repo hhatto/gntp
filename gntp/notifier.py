@@ -61,7 +61,7 @@ class GrowlNotifier(object):
 		'''
 		return data
 	
-	def register(self):
+	def register(self, display=None):
 		'''
 		Send GNTP Registration
 		'''
@@ -69,7 +69,7 @@ class GrowlNotifier(object):
 		register.add_header('Application-Name',self.applicationName)
 		for notification in self.notifications:
 			enabled = notification in self.defaultNotifications
-			register.add_notification(notification,enabled)
+			register.add_notification(notification,enabled,display)
 		if self.applicationIcon:
 			register.add_header('Application-Icon',self.applicationIcon)
 		if self.password:

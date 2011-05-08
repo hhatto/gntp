@@ -280,7 +280,7 @@ class GNTPRegister(_GNTPBase):
 				#open('register.png','wblol').write(notice['Data'])
 				self.resources[ notice.get('Identifier') ] = notice
 		
-	def add_notification(self,name,enabled=True):
+	def add_notification(self,name,enabled=True,display=None):
 		'''
 		Add new Notification to Registration message
 		@param name: Notification Name
@@ -289,6 +289,8 @@ class GNTPRegister(_GNTPBase):
 		notice = {}
 		notice['Notification-Name'] = u'%s'%name
 		notice['Notification-Enabled'] = u'%s'%enabled
+		if display:
+			notice['Notification-Display-Name'] = u'%s'%display
 			
 		self.notifications.append(notice)
 		self.add_header('Notifications-Count', len(self.notifications))
